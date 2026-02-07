@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Encontre o Sentido – Premium</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0;
+  font-family:'Inter', sans-serif;
+  background:#f2f4f8;
+  color:#1f2937;
+}
+header{
+  background: linear-gradient(135deg,#2f6fed,#3fa0ff);
+  color:#fff;
+  padding:32px 16px 80px;
+  text-align:center;
+  border-bottom-left-radius:32px;
+  border-bottom-right-radius:32px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+header h1{
+  font-size:2rem;
+  margin-bottom:8px;
+}
+header p{
+  font-size:1rem;
+  opacity:0.9;
+}
+
+/* MAIN */
+main{
+  padding:20px 16px;
+}
+
+/* TEMAS */
+.tema{
+  background:#fff;
+  border-radius:24px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 12px 28px rgba(0,0,0,0.08);
+  transition:transform 0.25s ease, box-shadow 0.25s ease;
+  cursor:pointer;
+}
+.tema:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 35px rgba(0,0,0,0.12);
+}
+.tema h2{
+  margin:0 0 6px;
+  color:#2f6fed;
+  font-size:1.2rem;
+}
+.tema p{
+  font-size:0.95rem;
+  color:#6b7280;
+  margin-bottom:12px;
+}
+
+/* DEVOCIONAL INTERNO */
+.devocional{
+  background:#f9fafc;
+  border-radius:18px;
+  padding:16px;
+  display:none;
+  margin-top:12px;
+}
+.titulo{
+  font-weight:600;
+  color:#2f6fed;
+  margin-top:10px;
+}
+button{
+  margin-top:12px;
+  width:100%;
+  background:#2f6fed;
+  color:#fff;
+  border:none;
+  padding:12px;
+  border-radius:16px;
+  font-weight:600;
+  cursor:pointer;
+  transition: transform 0.15s ease, background 0.25s ease;
+}
+button:hover{
+  transform:translateY(-2px);
+  background:#1e4ed8;
+}
+button.favorito-btn{
+  background:#e11d48;
+}
+button.favorito-btn:hover{
+  transform:translateY(-2px) scale(1.03);
+  background:#be123c;
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  display:flex;
+  justify-content:space-around;
+  background:#fff;
+  padding:14px 0;
+  box-shadow:0 -2px 15px rgba(0,0,0,0.1);
+  border-top-left-radius:20px;
+  border-top-right-radius:20px;
+}
+nav a{
+  font-size:1.5rem;
+  text-decoration:none;
+  color:#2f6fed;
+  transition: transform 0.2s ease;
+}
+nav a:hover{
+  transform: scale(1.2);
+}
+</style>
+</head>
+
+<body>
+<header>
+  <h1>Encontre o Sentido</h1>
+  <p>Uma jornada completa para entender Deus, a vida e você</p>
+</header>
+
+<main id="temas"></main>
+
+<nav>
+  <a href="index.html">🏠</a>
+  <a href="devocional.html">📖</a>
+  <a href="encontre.html">🔍</a>
+  <a href="historico.html">📆</a>
+  <a href="favoritos.html">❤️</a>
+  <a href="sobre.html">☰</a>
+</nav>
+
+<script>
+const temasData=[
+  {
+    titulo:"🌱 Quem é Deus?",
+    descricao:"Para quem nunca leu a Bíblia ou tem dúvidas sinceras.",
+    devocional:{
+      texto:"“Deus é amor.” – 1 João 4:8",
+      explicacao:"Deus não é apenas uma ideia, mas um ser que se importa profundamente conosco. Ele criou tudo e nos ama de forma pessoal.",
+      aplicacao:"Mesmo nos momentos de medo ou dúvida, lembre-se que Deus quer estar perto de você. Observe a natureza, a vida ao seu redor, e perceba Seu cuidado.",
+      reflexao:"Como você percebe o amor de Deus na sua vida cotidiana?",
+      oracao:"Deus, ajuda-me a enxergar Teu amor em cada detalhe da minha vida. Amém."
+    }
+  },
+  {
+    titulo:"💔 Por que existe dor?",
+    descricao:"Para quem já sofreu e se pergunta onde Deus estava.",
+    devocional:{
+      texto:"“O Senhor está perto dos que têm o coração quebrantado.” – Salmos 34:18",
+      explicacao:"A dor não significa que Deus se afastou. Pelo contrário, Ele se aproxima de nós quando estamos frágeis.",
+      aplicacao:"Quando sentir tristeza ou perda, confie que Deus está com você. Compartilhe seus sentimentos com alguém de confiança e busque conforto na oração.",
+      reflexao:"Como você lida com momentos difíceis e se sente amparado por Deus?",
+      oracao:"Deus, esteja ao meu lado nos momentos de dor e fortalece meu coração. Amém."
+    }
+  },
+  {
+    titulo:"✝️ Quem é Jesus?",
+    descricao:"Mais do que religião, uma pessoa real.",
+    devocional:{
+      texto:"“Eu vim para que tenham vida.” – João 10:10",
+      explicacao:"Jesus veio para oferecer vida plena, amor e perdão. Ele se aproxima de cada pessoa, sem julgamentos.",
+      aplicacao:"Observe como Jesus tratava os mais frágeis e marginalizados. Aprenda a agir com compaixão e amor.",
+      reflexao:"De que forma você pode demonstrar o amor de Jesus aos outros hoje?",
+      oracao:"Jesus, ajuda-me a viver conforme Teu amor e a seguir Teus passos. Amém."
+    }
+  },
+  {
+    titulo:"🔄 Recomeços",
+    descricao:"Para quem errou e acha que não tem volta.",
+    devocional:{
+      texto:"“Se alguém está em Cristo, nova criatura é.” – 2 Coríntios 5:17",
+      explicacao:"Todos nós erramos, mas Deus nos oferece sempre uma nova chance. O passado não define nosso futuro.",
+      aplicacao:"Se algo deu errado, recomece hoje. Pequenos passos valem mais que grandes culpas.",
+      reflexao:"Qual passo você pode dar hoje para um novo começo?",
+      oracao:"Deus, ensina-me a recomeçar e confiar em Teus planos. Amém."
+    }
+  },
+  {
+    titulo:"😰 Ansiedade e medo",
+    descricao:"Para quem vive preocupado com o amanhã.",
+    devocional:{
+      texto:"“Lancem sobre Ele toda a sua ansiedade.” – 1 Pedro 5:7",
+      explicacao:"Ansiedade surge quando tentamos controlar tudo. Deus nos convida a confiar n’Ele.",
+      aplicacao:"Tire um momento do seu dia para respirar, orar e entregar suas preocupações a Deus.",
+      reflexao:"Que situação você precisa entregar hoje a Deus?",
+      oracao:"Senhor, ajuda-me a confiar em Ti mesmo quando não entendo tudo. Amém."
+    }
+  },
+  {
+    titulo:"🧍 Solidão",
+    descricao:"Para quem se sente sozinho por dentro.",
+    devocional:{
+      texto:"“Eu estarei com vocês todos os dias.” – Mateus 28:20",
+      explicacao:"A presença de Deus não depende de sentimentos. Ele está conosco mesmo quando ninguém mais está.",
+      aplicacao:"Quando se sentir só, lembre-se que pode conversar com Deus em oração.",
+      reflexao:"Como você percebe a presença de Deus na sua vida diária?",
+      oracao:"Deus, lembra-me que nunca estou sozinho. Amém."
+    }
+  },
+  {
+    titulo:"⚖️ Culpa e perdão",
+    descricao:"Para quem carrega erros do passado.",
+    devocional:{
+      texto:"“Ele é fiel para nos perdoar.” – 1 João 1:9",
+      explicacao:"O perdão de Deus é maior que qualquer erro. Ele nos oferece uma vida limpa e nova.",
+      aplicacao:"Reflita sobre pessoas que você precisa perdoar, inclusive a si mesmo.",
+      reflexao:"Existe algo ou alguém que você precisa perdoar hoje?",
+      oracao:"Deus, ensina-me a perdoar e receber Teu perdão. Amém."
+    }
+  },
+  {
+    titulo:"🌟 Quer continuar?",
+    descricao:"Um convite simples, sem pressão.",
+    devocional:{
+      texto:"Seguir Jesus é começar um relacionamento real com Deus.",
+      explicacao:"Não é virar religioso, mas abrir o coração e confiar Nele.",
+      aplicacao:"Se você sente um chamado, comece hoje com passos simples de fé.",
+      reflexao:"O que você pode fazer hoje para se aproximar mais de Deus?",
+      oracao:"Jesus, quero me aproximar de Ti e confiar em Teus caminhos. Amém."
+    }
+  }
+];
+
+const temasContainer=document.getElementById("temas");
+
+temasData.forEach((tema)=>{
+  const temaDiv=document.createElement("div");
+  temaDiv.className="tema";
+  temaDiv.innerHTML=`
+    <h2>${tema.titulo}</h2>
+    <p>${tema.descricao}</p>
+    <div class="devocional">
+      <p class="titulo">📖 Texto</p><p>${tema.devocional.texto}</p>
+      <p class="titulo">💡 Explicação</p><p>${tema.devocional.explicacao}</p>
+      <p class="titulo">🌱 Aplicação</p><p>${tema.devocional.aplicacao}</p>
+      <p class="titulo">💭 Reflexão</p><p>${tema.devocional.reflexao}</p>
+      <p class="titulo">🙏 Oração</p><p>${tema.devocional.oracao}</p>
+      <button class="favorito-btn">❤️ Favoritar</button>
+    </div>
+  `;
+  
+  const devDiv = temaDiv.querySelector(".devocional");
+  const btnFav = temaDiv.querySelector(".favorito-btn");
+
+  temaDiv.addEventListener("click",()=>{devDiv.style.display=devDiv.style.display==="block"?"none":"block";});
+
+  btnFav.addEventListener("click",(e)=>{
+    e.stopPropagation();
+    let favs=JSON.parse(localStorage.getItem("favoritosEncontre"))||[];
+    if(!favs.some(f=>f.titulo===tema.titulo)){
+      favs.push({titulo:tema.titulo,texto:tema.devocional.texto});
+      localStorage.setItem("favoritosEncontre",JSON.stringify(favs));
+      alert("Devocional adicionado aos favoritos ❤️");
+    } else {
+      alert("Este devocional já está nos favoritos!");
+    }
+  });
+
+  temasContainer.appendChild(temaDiv);
+});
+</script>
+
+</body>
+</html>

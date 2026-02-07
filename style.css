@@ -1,0 +1,168 @@
+:root {
+  --primary: #2f6fed;
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* HEADER */
+header {
+  background: var(--primary);
+  color: white;
+  padding: 24px 16px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  text-align: center;
+}
+
+header p {
+  margin-top: 8px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* CONTEÚDO */
+main {
+  padding: 20px 16px 90px;
+}
+
+/* CARDS */
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  animation: slideUp 0.45s ease;
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+/* VERSÍCULO */
+#versiculo {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--text);
+}
+
+#referencia {
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* BOTÃO */
+button {
+  width: 100%;
+  background: var(--primary);
+  border: none;
+  color: white;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.15s ease;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* TEXTAREA */
+textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 10px;
+  resize: none;
+}
+
+/* LISTAS */
+.lista-devocionais li {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+  animation: slideUp 0.45s ease;
+  transition: transform 0.15s ease;
+}
+
+.lista-devocionais li:active {
+  transform: scale(0.97);
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 22px;
+  transition: transform 0.2s ease;
+}
+
+nav a:active {
+  transform: scale(1.2);
+}
+
+/* ANIMAÇÕES */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}/* BOTÃO FAVORITADO */
+button.favoritado {
+  background: #e11d48;
+}

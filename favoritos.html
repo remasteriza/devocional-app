@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Favoritos – Devocional Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:#f2f4f8;
+  color:#1f2937;
+}
+header{
+  background: linear-gradient(135deg,#2f6fed,#3fa0ff);
+  color:#fff;
+  padding:28px 16px;
+  text-align:center;
+  border-bottom-left-radius:32px;
+  border-bottom-right-radius:32px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+header h1{
+  font-size:2.2rem;
+  margin-bottom:8px;
+}
+header p{
+  font-size:1rem;
+  opacity:0.9;
+}
+main{padding:20px 16px;}
+.card{
+  background:#fff;
+  border-radius:24px;
+  padding:24px;
+  margin-bottom:20px;
+  box-shadow:0 12px 28px rgba(0,0,0,0.08);
+  cursor:pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card:hover{
+  transform: translateY(-5px);
+  box-shadow:0 16px 35px rgba(0,0,0,0.12);
+}
+.referencia{
+  font-size:14px;
+  color:#6b7280;
+  margin-bottom:6px;
+}
+.versiculo{
+  font-weight:600;
+  margin:8px 0 12px 0;
+  font-size:1.1rem;
+  color:#111827;
+}
+.conteudo{
+  display:none;
+  margin-top:14px;
+  border-top:1px solid #e5e7eb;
+  padding-top:14px;
+}
+.titulo{
+  font-weight:600;
+  margin-top:12px;
+  color:#2f6fed;
+}
+button{
+  margin-top:12px;
+  width:100%;
+  background:#e11d48;
+  color:#fff;
+  border:none;
+  padding:12px;
+  border-radius:16px;
+  font-weight:600;
+  cursor:pointer;
+  transition: transform 0.15s ease, background 0.25s ease;
+}
+button:hover{
+  transform: translateY(-2px) scale(1.02);
+  background:#be123c;
+}
+nav{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  display:flex;
+  justify-content:space-around;
+  background:#fff;
+  padding:14px 0;
+  box-shadow:0 -2px 15px rgba(0,0,0,0.1);
+  border-top-left-radius:20px;
+  border-top-right-radius:20px;
+}
+nav a{
+  font-size:1.5rem;
+  text-decoration:none;
+  color:#2f6fed;
+  transition: transform 0.2s ease;
+}
+nav a:hover{
+  transform: scale(1.2);
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>❤️ Favoritos</h1>
+<p>Seus devocionais guardados para reflexão</p>
+</header>
+
+<main id="lista"></main>
+
+<nav>
+  <a href="index.html">🏠</a>
+  <a href="devocional.html">📖</a>
+  <a href="encontre.html">🔍</a>
+  <a href="historico.html">📆</a>
+  <a href="favoritos.html">❤️</a>
+  <a href="sobre.html">☰</a>
+</nav>
+
+<script>
+const lista=document.getElementById("lista");
+let favoritos=JSON.parse(localStorage.getItem("favoritos30"))||[];
+
+function renderFavoritos(){
+  lista.innerHTML="";
+  if(favoritos.length===0){
+    lista.innerHTML="<p>Você ainda não adicionou nenhum devocional aos favoritos.</p>";
+    return;
+  }
+
+  favoritos.forEach(f=>{
+    const card=document.createElement("div");
+    card.className="card";
+
+    // Pegando conteúdo completo do devocional original
+    const devocionalOriginal = {
+      versiculo:[
+        "O Senhor é o meu pastor; nada me faltará.",
+        "Entrega o teu caminho ao Senhor.",
+        "Não temas, porque eu sou contigo.",
+        "Vinde a mim todos os cansados.",
+        "Buscai primeiro o Reino de Deus.",
+        "Aquietai-vos e sabei que eu sou Deus.",
+        "Tudo posso naquele que me fortalece."
+      ],
+      referencia:[
+        "Salmos 23:1","Salmos 37:5","Isaías 41:10",
+        "Mateus 11:28","Mateus 6:33",
+        "Salmos 46:10","Filipenses 4:13"
+      ],
+      contexto:"Este texto foi escrito em um momento de desafios, mostrando que Deus se importa com a vida real.",
+      significado:"Ele revela que a fé não é fugir dos problemas, mas confiar mesmo quando não entendemos tudo.",
+      vidaReal:"Na prática, isso fala sobre ansiedade, decisões, medo e a busca por sentido.",
+      pergunta:"O que hoje mais tem ocupado seus pensamentos?",
+      desafio:"Separe 1 minuto hoje para falar com Deus com sinceridade.",
+      oracao:"Deus, ensina-me a confiar e a encontrar sentido mesmo nos dias difíceis. Amém."
+    };
+
+    const i = f.dia-1; // índice do dia
+    card.innerHTML=`
+      <div class="referencia">Dia ${f.dia} – ${f.referencia}</div>
+      <div class="versiculo">"${f.versiculo}"</div>
+      <div class="conteudo">
+        <p class="titulo">📖 Contexto</p><p>${devocionalOriginal.contexto}</p>
+        <p class="titulo">💡 Entendendo melhor</p><p>${devocionalOriginal.significado}</p>
+        <p class="titulo">🌱 Vida real</p><p>${devocionalOriginal.vidaReal}</p>
+        <p class="titulo">💭 Pergunta</p><p>${devocionalOriginal.pergunta}</p>
+        <p class="titulo">🎯 Desafio de hoje</p><p>${devocionalOriginal.desafio}</p>
+        <p class="titulo">🙏 Oração</p><p>${devocionalOriginal.oracao}</p>
+        <button>❌ Remover dos favoritos</button>
+      </div>
+    `;
+
+    const conteudo=card.querySelector(".conteudo");
+    const btnRemove=card.querySelector("button");
+
+    card.addEventListener("click",()=>{ 
+      conteudo.style.display=conteudo.style.display==="block"?"none":"block";
+    });
+
+    btnRemove.addEventListener("click",(e)=>{
+      e.stopPropagation();
+      favoritos=favoritos.filter(ff=>ff.dia!==f.dia);
+      localStorage.setItem("favoritos30",JSON.stringify(favoritos));
+      renderFavoritos();
+      alert("Devocional removido dos favoritos ❌");
+    });
+
+    lista.appendChild(card);
+  });
+}
+
+renderFavoritos();
+</script>
+
+</body>
+</html>

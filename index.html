@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Devocionais Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== ROOT ===== */
+:root {
+  --primary: #2f6fed;
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+}
+
+/* ===== RESET ===== */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x:hidden; }
+
+/* ===== HEADER ===== */
+header {
+  position: relative;
+  background: linear-gradient(135deg,#2f6fed,#3fa0ff);
+  color:white;
+  padding:60px 20px 140px;
+  text-align:center;
+  border-bottom-left-radius:30px;
+  border-bottom-right-radius:30px;
+  overflow:hidden;
+  animation: gradientBG 12s ease infinite;
+}
+
+header h1 { font-size:2.5rem; margin-bottom:10px; }
+header p { font-size:1.1rem; opacity:0.9; margin-bottom:20px; }
+
+.banner {
+  font-size:1rem;
+  background: rgba(255,255,255,0.2);
+  display:inline-block;
+  padding:10px 16px;
+  border-radius:20px;
+  animation: floatBanner 4s ease-in-out infinite;
+}
+
+@keyframes floatBanner { 0%,100%{transform:translateY(0px);} 50%{transform:translateY(-8px);} }
+
+/* ===== BOTÃO HERO ===== */
+.btn-hero {
+  display:inline-block;
+  padding:14px 28px;
+  background:white;
+  color:var(--primary);
+  font-weight:600;
+  border-radius:25px;
+  cursor:pointer;
+  transition:0.3s;
+  text-decoration:none;
+  margin-top:20px;
+}
+.btn-hero:hover { background:#e6f0ff; transform:translateY(-3px); }
+
+/* ===== PARTICULAS ===== */
+.particle {
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  opacity:0.6;
+  animation: moveParticle 10s linear infinite;
+}
+@keyframes moveParticle {
+  0%{transform:translateY(0px) translateX(0px);}
+  50%{transform:translateY(-80px) translateX(20px);}
+  100%{transform:translateY(0px) translateX(0px);}
+}
+
+/* ===== MAIN ===== */
+main { padding:20px; margin-top:-80px; }
+
+/* ===== CARDS ===== */
+.cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:18px;
+  margin-top:20px;
+}
+.card {
+  background:var(--card);
+  border-radius:25px;
+  padding:22px;
+  text-align:center;
+  cursor:pointer;
+  perspective:1000px;
+  transition:0.3s, box-shadow 0.3s;
+}
+.card-inner {
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+.card:hover .card-inner {
+  transform: rotateY(10deg) rotateX(5deg);
+}
+.card:hover { box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+.card span { font-size:2.2rem; display:block; margin-bottom:12px; }
+.card p { font-size:0.95rem; font-weight:500; color:var(--muted); }
+
+/* ===== MINI DEVOCIONAL ===== */
+.devocional-mini {
+  margin-top:30px;
+  background:var(--card);
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  opacity:1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.devocional-mini h2 { font-size:1.2rem; margin-bottom:10px; }
+.devocional-mini p { color:var(--muted); font-size:0.9rem; margin-bottom:10px; }
+.devocional-mini.active { transform: scale(1.02); }
+
+/* ===== MOOD ===== */
+.mood { margin-top:30px; text-align:center; }
+.mood p { font-weight:600; margin-bottom:10px; }
+.mood-buttons button {
+  font-size:1.6rem;
+  margin:8px;
+  padding:14px 22px;
+  border-radius:14px;
+  border:none;
+  cursor:pointer;
+  transition:0.2s;
+  background:#fff;
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+.mood-buttons button:hover {
+  transform:translateY(-4px);
+  box-shadow:0 12px 25px rgba(0,0,0,0.12);
+}
+#suggestion { margin-top:14px; font-weight:600; font-size:0.95rem; color:var(--primary); }
+
+/* ===== FOOTER ===== */
+footer {
+  text-align:center;
+  padding:20px 16px;
+  color:var(--muted);
+  font-size:14px;
+  margin-top:40px;
+  border-top:1px solid #e5e7eb;
+}
+
+/* ===== NAV FIXO ===== */
+nav {
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:white;
+  display:flex;
+  justify-content:space-around;
+  padding:14px 0;
+  box-shadow:0 -2px 12px rgba(0,0,0,0.1);
+  border-top-left-radius:20px;
+  border-top-right-radius:20px;
+}
+nav a { color:var(--primary); font-size:1.5rem; text-decoration:none; transition:0.2s; }
+nav a:hover { transform:scale(1.2); }
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes gradientBG {
+  0% {background: linear-gradient(135deg,#2f6fed,#3fa0ff);}
+  50% {background: linear-gradient(135deg,#3fa0ff,#2f6fed);}
+  100% {background: linear-gradient(135deg,#2f6fed,#3fa0ff);}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Devocionais Premium</h1>
+  <p>Comece seu dia com fé, paz e propósito ✨</p>
+  <div class="banner" id="verse">📖 Versículo do Dia</div>
+  <a href="devocional.html" class="btn-hero">📖 Devocional do Dia</a>
+</header>
+
+<main>
+
+<!-- CARDS PRINCIPAIS -->
+<div class="cards">
+  <div class="card" onclick="location.href='devocional.html'"><div class="card-inner"><span>📖</span><p>Devocional</p></div></div>
+  <div class="card" onclick="location.href='encontre.html'"><div class="card-inner"><span>🔍</span><p>Encontre o Sentido</p></div></div>
+  <div class="card" onclick="location.href='favoritos.html'"><div class="card-inner"><span>❤️</span><p>Favoritos</p></div></div>
+  <div class="card" onclick="location.href='historico.html'"><div class="card-inner"><span>📆</span><p>Histórico</p></div></div>
+</div>
+
+<!-- MINI DEVOCIONAL ALEATÓRIO -->
+<div class="devocional-mini" id="miniDevocional">
+  <h2>📖 Mini Devocional</h2>
+  <p id="miniText">“Não temas, porque eu sou contigo.” – Isaías 41:10</p>
+  <p id="miniExp">A promessa de Deus nos lembra que nunca estamos sozinhos, mesmo nos momentos de medo.</p>
+  <div style="display:flex; gap:10px; margin-top:10px;">
+    <button onclick="nextMini()">Novo Devocional</button>
+    <button onclick="favoritarMini()">❤️ Favoritar</button>
+  </div>
+</div>
+
+<!-- MOOD DO DIA -->
+<div class="mood">
+  <p>Como você se sente hoje?</p>
+  <div class="mood-buttons">
+    <button onclick="suggest('😃')">😃</button>
+    <button onclick="suggest('😔')">😔</button>
+    <button onclick="suggest('😰')">😰</button>
+    <button onclick="suggest('😡')">😡</button>
+  </div>
+  <p id="suggestion"></p>
+</div>
+
+</main>
+
+<footer>
+  <p>Leia com calma. Deus fala no simples.</p>
+</footer>
+
+<nav>
+  <a href="index.html">🏠</a>
+  <a href="devocional.html">📖</a>
+  <a href="encontre.html">🔍</a>
+  <a href="historico.html">📆</a>
+  <a href="favoritos.html">❤️</a>
+  <a href="sobre.html">☰</a>
+</nav>
+
+<script>
+// ===== VERSÍCULO DINÂMICO =====
+const verses = [
+  '“O Senhor é meu pastor, nada me faltará.” – Salmos 23:1',
+  '“Tudo posso naquele que me fortalece.” – Filipenses 4:13',
+  '“Entrega o teu caminho ao Senhor; confia nele.” – Salmos 37:5',
+  '“O Senhor está perto dos que têm o coração quebrantado.” – Salmos 34:18'
+];
+function updateVerse(){
+  document.getElementById('verse').innerText = '📖 Versículo do Dia: ' + verses[Math.floor(Math.random()*verses.length)];
+}
+updateVerse();
+setInterval(updateVerse,10000);
+
+// ===== PARTICULAS =====
+for(let i=0;i<30;i++){
+  let p = document.createElement('div');
+  p.className='particle';
+  p.style.left=Math.random()*100+'%';
+  p.style.animationDuration=(5+Math.random()*10)+'s';
+  p.style.opacity=Math.random();
+  document.querySelector('header').appendChild(p);
+}
+
+// ===== MINI DEVOCIONAL =====
+const miniDevos = [
+  {text:'“Não temas, porque eu sou contigo.” – Isaías 41:10', exp:'A promessa de Deus nos lembra que nunca estamos sozinhos.'},
+  {text:'“O Senhor é bom, um refúgio em tempos de angústia.” – Naum 1:7', exp:'Mesmo em momentos difíceis, Deus continua sendo nosso refúgio.'},
+  {text:'“Buscai primeiro o Reino de Deus.” – Mateus 6:33', exp:'Coloque Deus em primeiro lugar e Ele cuidará do resto.'},
+  {text:'“Vinde a mim todos os que estais cansados.” – Mateus 11:28', exp:'Jesus oferece descanso verdadeiro para quem está sobrecarregado.'}
+];
+function nextMini(){
+  const random = miniDevos[Math.floor(Math.random()*miniDevos.length)];
+  const mini = document.getElementById('miniDevocional');
+  mini.classList.add('active');
+  setTimeout(()=>mini.classList.remove('active'),300);
+  document.getElementById('miniText').innerText = random.text;
+  document.getElementById('miniExp').innerText = random.exp;
+}
+
+// ===== MOOD =====
+function suggest(mood){
+  const suggestion=document.getElementById('suggestion');
+  switch(mood){
+    case '😃': suggestion.innerText="✨ Hoje é um ótimo dia! Confira o Devocional do Dia para agradecer 🙏"; break;
+    case '😔': suggestion.innerText="💡 Sinta-se acolhido. Veja 'Encontre o Sentido' para consolo e reflexão 💡"; break;
+    case '😰': suggestion.innerText="🕊️ Respire fundo. O Devocional pode te trazer paz e direção ✨"; break;
+    case '😡': suggestion.innerText="🔥 Libere seu coração. A oração ajuda a acalmar 🙏"; break;
+    default: suggestion.innerText="";
+  }
+}
+</script>
+<script>
+// ===== FAVORITOS =====
+const favoritosKey = 'meusFavoritos';
+
+function favoritarMini() {
+  const titulo = document.getElementById('miniText').innerText;
+  const exp = document.getElementById('miniExp').innerText;
+  adicionarFavorito({titulo, exp});
+  alert("Devocional adicionado aos favoritos!");
+}
+
+function adicionarFavorito(devocional){
+  let favoritos = JSON.parse(localStorage.getItem(favoritosKey)) || [];
+  if(!favoritos.some(f => f.titulo === devocional.titulo)) {
+    favoritos.push(devocional);
+    localStorage.setItem(favoritosKey, JSON.stringify(favoritos));
+  }
+}
+</script>
+</body>
+</html>
